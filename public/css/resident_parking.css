@@ -1,0 +1,145 @@
+/* ===== Reset and base styling ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgb(28,28,52), #8f94fb);
+  color: #333;
+  padding-bottom: 2rem;
+}
+
+/* ===== Main Header ===== */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 900px; /* Narrower for a simple page */
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #fff;
+}
+
+.main-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.header-link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.header-link:hover {
+  background: #fff;
+  color: #4e54c8;
+}
+
+/* ===== Main Content Container ===== */
+.container {
+  max-width: 900px; /* Match header */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ===== Card Styling ===== */
+.card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  max-width: 500px; /* Good width for a single card */
+  margin: 0 auto; /* Center the card */
+}
+
+/* ===== Empty Message ===== */
+.empty-message {
+  text-align: center;
+  color: #777;
+  font-size: 1.1rem;
+  padding: 2rem 0;
+}
+
+/* ===== Parking Details List ===== */
+.parking-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Definition Term (Label) */
+.detail-item dt {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Definition Data (Value) */
+.detail-item dd {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.detail-item .slot-number {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4e54c8;
+  background-color: #f0f2ff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+}
+
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  /* Stack header items */
+  .main-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+
+  /* Stack key/value pairs for readability */
+  .detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding-bottom: 1rem;
+  }
+}

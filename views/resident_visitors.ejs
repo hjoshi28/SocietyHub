@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/resident_visitors.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>My Visitors</title>
+</head>
+<body>
+
+  <header class="main-header">
+    <h1>My Visitor Log</h1>
+    <div class="header-links">
+      <a href="/resident/visitors/new" class="header-link">Pre-register Visitor</a>
+      <a href="/resident/dashboard" class="header-link header-link-secondary">Back to Dashboard</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h3 class="card-title">Visitor History & Pre-registered</h3>
+      <% if (visitors.length === 0) { %>
+        <p class="empty-message">You have no visitor history.</p>
+      <% } else { %>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Expected Arrival</th>
+                <th>Actual Check-in</th>
+                <th>Actual Check-out</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% visitors.forEach(v => { %>
+                <tr>
+                  <td><%= v.name %></td>
+                  <td><%= v.phone %></td>
+                  <td><%= v.expected_check_in ? new Date(v.expected_check_in).toLocaleString() : 'N/A' %></td>
+                  <td><%= v.actual_check_in ? new Date(v.actual_check_in).toLocaleString() : 'N/A' %></td>
+                  <td><%= v.actual_check_out ? new Date(v.actual_check_out).toLocaleString() : 'N/A' %></td>
+                  <td>
+                    <% if (!v.actual_check_in) { %>
+                      <span class="status status-preregistered">Pre-registered</span>
+                    <% } else if (!v.actual_check_out) { %>
+                      <span class="status status-checkedin">Checked In</span>
+                    <% } else { %>
+                      <span class="status status-checkedout">Checked Out</span>
+                    <% } %>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </div>
+  </main>
+
+</body>
+</html>

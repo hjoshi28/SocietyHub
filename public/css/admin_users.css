@@ -1,0 +1,212 @@
+/* Color Palette & Fonts */
+:root {
+  --primary-color: #4e54c8;
+  --primary-light: #8f94fb;
+  --text-dark: #333;
+  --text-light: #444;
+  --background-light: #ffffff;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --dark-bg: rgb(28,28,52);
+}
+
+/* Base Layout (Required Background & Scroll-friendly Body) */
+body {
+  /* Enforce required background gradient */
+  background: linear-gradient(135deg, var(--dark-bg), var(--primary-light)); 
+  color: #fff;
+  padding: 20px 5%;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* Headings and Structure */
+h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+h2 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 1.5rem 0;
+}
+
+/* Header Action Links/Buttons */
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Back Link Style */
+.link-back {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.link-back:hover {
+  color: #dce2ff;
+}
+
+/* Primary Button Style (for Create New User) */
+.button-primary {
+  padding: 0.7rem 1.2rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.button-primary:hover {
+  background-color: #3b42b0;
+}
+
+/* Table Wrapper (Card for Data) */
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--background-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem 1.2rem;
+  border-bottom: none;
+}
+
+td, th {
+  padding: 1rem 1.2rem;
+  border: 1px solid #eee;
+  color: var(--text-dark);
+  vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f0f3ff;
+}
+
+/* Status Colors */
+.status-true { 
+  color: var(--success-color); 
+  font-weight: 600; 
+}
+.status-false { 
+  color: var(--danger-color); 
+  font-weight: 600; 
+}
+
+/* Action Buttons in Table */
+.button-action {
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, opacity 0.3s ease;
+  margin-right: 5px;
+}
+
+.button-action:last-child {
+  margin-right: 0;
+}
+
+.button-action.toggle-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+.button-action.toggle-btn:hover {
+  background-color: #3b42b0;
+}
+
+.button-action.delete-btn {
+  background-color: var(--danger-color); /* Red for Delete */
+  color: white;
+}
+.button-action.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Specific Element Styling */
+.contact-info {
+  line-height: 1.4; /* Better spacing for email/phone stack */
+}
+
+.link-action {
+  color: var(--primary-color);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+.link-action:hover {
+  color: #3b42b0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  td, th {
+    padding: 0.8rem;
+  }
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .link-back {
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .button-primary {
+    width: 100%;
+  }
+}

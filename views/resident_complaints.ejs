@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Complaints</title>
+    <link rel="stylesheet" href="/css/resident_complaints.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-header">
+        <h1>My Complaints</h1>
+        <p class="welcome-message">Welcome, <b><%= user.name %></b>!</p>
+        
+        <div class="header-actions">
+            <a href="/resident/dashboard" class="action-link back-link">&larr; Back to Dashboard</a>
+            <span class="separator">|</span>
+            <a href="/resident/complaints/new" class="action-link primary-action-link">File a New Complaint</a>
+        </div>
+    </div>
+
+    <h2>Your Complaint History</h2>
+    
+    <% if (complaints.length === 0) { %>
+        <p class="no-data-message">You have not filed any complaints yet.</p>
+    <% } else { %>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                        <th>Assigned To</th>
+                        <th class="description-header">Description</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <% complaints.forEach(comp => { %>
+                        <tr>
+                            <td><%= new Date(comp.created_at).toLocaleDateString() %></td>
+                            <td class="comp-title"><%= comp.title %></td>
+                            <td class="status-cell">
+                                <span class="status-tag status-<%= comp.status.toLowerCase().replace(' ', '-') %>">
+                                    <%= comp.status %>
+                                </span>
+                            </td>
+                            <td><%= comp.assigned_staff_name || 'Unassigned' %></td>
+                            <td class="comp-description"><%= comp.description.substring(0, 50) %><%= comp.description.length > 50 ? '...' : '' %></td>
+                            
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+
+</body>
+</html>

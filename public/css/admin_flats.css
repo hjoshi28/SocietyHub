@@ -1,0 +1,329 @@
+/* ===== Google Font Import ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===== CSS Variables ===== */
+:root {
+    --primary-color: #4e54c8;
+    --primary-color-hover: #4148b1;
+    --gradient-start: #8f94fb;
+    --gradient-bg: linear-gradient(135deg, rgb(28, 28, 52), #8f94fb);
+    
+    --danger-color: #ff4d4d;
+    --danger-color-hover: #e03e3e;
+    --danger-text: #d90000;
+    --danger-bg: #ff4d4d1a;
+    
+    --success-color: #28a745;
+    --success-color-hover: #218838;
+
+    --white: #ffffff;
+    --light-bg: #f9faff;
+    --text-dark: #333;
+    --text-light: #e6e6e6;
+    --text-accent: #4e54c8;
+    
+    --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    --border-radius-main: 14px;
+    --border-radius-sub: 8px;
+}
+
+/* ===== Base Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== Body ===== */
+body {
+    min-height: 100vh;
+    background: var(--gradient-bg);
+    padding: 30px 15px;
+    color: var(--white);
+    line-height: 1.6;
+}
+
+/* ===== Container ===== */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ===== Typography ===== */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 600;
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: var(--white);
+    transform: translateX(-3px);
+}
+
+/* ===== Content Wrapper (Main Card) ===== */
+.content-wrapper {
+    background: var(--white);
+    color: var(--text-dark);
+    text-align: left;
+    padding: 2.5rem;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--card-shadow);
+    margin-top: 1rem;
+}
+
+/* ===== Error & Info Messages ===== */
+.error-message {
+    background-color: var(--danger-bg);
+    border: 1px solid var(--danger-color);
+    color: var(--danger-text);
+    padding: 1rem;
+    border-radius: var(--border-radius-sub);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ===== Form Styling ===== */
+.form-container {
+    background-color: var(--light-bg);
+    border: 1px solid #e0e0ff;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2.5rem;
+}
+
+.assignment-subtitle {
+    color: var(--text-dark);
+    margin-top: 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.25rem;
+}
+
+/* Form Row for side-by-side inputs */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 1.25rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 150px;
+    margin-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-accent);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-sub);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    background-color: var(--white);
+    transition: 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="date"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+}
+
+/* ===== Button Styling ===== */
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: var(--border-radius-sub);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--gradient-start));
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(78, 84, 200, 0.3);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 15px rgba(78, 84, 200, 0.4);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-color-hover);
+}
+
+/* Small Button (for tables) */
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+
+/* ===== Table Styling ===== */
+.section-title {
+    text-align: left;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-accent);
+}
+
+/* Wrapper for responsive table */
+.table-responsive-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Adds horizontal scroll on small screens */
+}
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: var(--border-radius-sub);
+    overflow: hidden; /* Ensures radius is applied to corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    min-width: 800px;
+}
+
+.content-table th,
+.content-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.content-table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.content-table tbody tr:nth-child(even) {
+    background-color: var(--light-bg);
+}
+
+.content-table tbody tr:hover {
+    background-color: #f0f2ff;
+}
+
+/* ===== Table Status & Action Cell Styling ===== */
+
+/* NEW: Status for Vacant (Green) */
+.content-table .status-Vacant {
+    color: var(--success-color);
+    font-weight: 700;
+}
+
+/* NEW: Status for Occupied (Dark/Neutral) */
+.content-table .status-Occupied {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* Status text for neutral/awaiting */
+.status-text-awaiting {
+    color: #777;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Action Cell Content */
+.action-cell {
+    text-align: center;
+    min-width: 120px;
+}
+
+.action-cell form {
+    margin: 0;
+    display: inline-block;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 900px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 0;
+    }
+
+    .form-row .form-group {
+        margin-bottom: 1.25rem;
+    }
+    
+    .content-wrapper {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .content-wrapper {
+        padding: 1rem;
+    }
+    .form-container {
+        padding: 1rem 1.25rem;
+    }
+}

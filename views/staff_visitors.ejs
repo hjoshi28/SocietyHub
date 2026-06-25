@@ -1,0 +1,226 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Visitor Management</title>
+  <style>
+    body { font-family: sans-serif; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    h2 { border-bottom: 2px solid #f2f2f2; padding-bottom: 5px; }
+    .container { display: flex; gap: 30px; }
+    .col { flex: 1; }
+    .form-container { background-color: #f9f9f9; border: 1px solid #ccc; padding: 15px; border-radius: 8px; }
+  </style>
+</head>
+<body> 
+  <h1>Security - Visitor Dashboard</h1>
+  <a href="/staff/dashboard">Back to Dashboard</a>
+  <hr>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <p style="color: red; font-weight: bold;"><%= error %></p>
+  <% } %>
+
+  <div class="container">
+    <div class="col form-container">
+      <h2>Register Walk-in Visitor</h2>
+      <form action="/staff/visitors/check-in" method="POST">
+        <div>
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" required style="width: 90%;">
+        </div>
+        <br>
+        <div>
+          <label for="phone">Phone:</label><br>
+          <input type="text" id="phone" name="phone" required style="width: 90%;">
+        </div>
+        <br>
+        <div>
+          <label for="flat_id">Flat to Visit:</label><br>
+          <select id="flat_id" name="flat_id" required style="width: 95%;">
+            <option value="">-- Select Flat --</option>
+            <% flats.forEach(flat => { %>
+              <option value="<%= flat.flat_id %>">
+                <%= flat.wing %> - <%= flat.flat_number %>
+              </option>
+            <% }) %>
+          </select>
+        </div>
+        <br>
+        <button type="submit">Check-in Visitor</button>
+      </form>
+    </div>
+
+    <div class="col" style="flex: 2;">
+      <h2>Expected Visitors (Today)</h2>
+      <% if (preRegisteredVisitors.length === 0) { %>
+        <p>No pre-registered visitors for today.</p>
+      <% } else { %>
+        <table>
+          <thead> <tr> <th>Name</th> <th>Phone</th> <th>Expected</th> <th>Flat</th> <th>Action</th> </tr> </thead>
+          <tbody>
+            <% preRegisteredVisitors.forEach(v => { %>
+              <tr>
+                <td><%= v.name %></td>
+                <td><%= v.phone %></td>
+                <td><%= new Date(v.expected_check_in).toLocaleTimeString() %></td>
+                <td><%= v.wing %>-<%= v.flat_number %></td>
+                <td>
+                  <form action="/staff/visitors/<%= v.visitor_id %>/check-in" method="POST">
+                    <button type="submit">Check-in</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+
+      <h2>Currently Checked-in Visitors</h2>
+      <% if (checkedInVisitors.length === 0) { %>
+        <p>No visitors currently in the society.</p>
+      <% } else { %>
+        <table>
+          <thead> <tr> <th>Name</th> <th>Phone</th> <th>Checked In</th> <th>Flat</th> <th>Action</th> </tr> </thead>
+          <tbody>
+            <% checkedInVisitors.forEach(v => { %>
+              <tr>
+                <td><%= v.name %></td>
+                <td><%= v.phone %></td>
+                <td><%= new Date(v.actual_check_in).toLocaleTimeString() %></td>
+                <td><%= v.wing %>-<%= v.flat_number %></td>
+                <td>
+                  <form action="/staff/visitors/<%= v.visitor_id %>/check-out" method="POST">
+                    <button type="submit" style="background-color: #f44336; color: white;">Check-out</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Management</title>
+    <link rel="stylesheet" href="/css/staff_visitors.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <h1>Security - Visitor Dashboard</h1>
+        <a href="/staff/dashboard" class="back-link">&larr; Back to Dashboard</a>
+
+        <div class="content-wrapper">
+
+            <% if (typeof error !== 'undefined' && error) { %>
+                <p class="error-message"><%= error %></p>
+            <% } %>
+
+            <div class="visitor-layout">
+                
+                <div class="visitor-col-form">
+                    <div class="form-container">
+                        <h2 class="section-title" style="margin-top: 0;">Register Walk-in</h2>
+                        <form action="/staff/visitors/check-in" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone:</label>
+                                <input type="text" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="flat_id">Flat to Visit:</label>
+                                <select id="flat_id" name="flat_id" required>
+                                    <option value="">-- Select Flat --</option>
+                                    <% flats.forEach(flat => { %>
+                                        <option value="<%= flat.flat_id %>">
+                                            <%= flat.wing %> - <%= flat.flat_number %>
+                                        </option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Check-in Visitor</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="visitor-col-tables">
+                    <h2 class="section-title">Expected Visitors (Today)</h2>
+                    <% if (preRegisteredVisitors.length === 0) { %>
+                        <p>No pre-registered visitors for today.</p>
+                    <% } else { %>
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Expected</th>
+                                    <th>Flat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% preRegisteredVisitors.forEach(v => { %>
+                                    <tr>
+                                        <td><%= v.name %></td>
+                                        <td><%= v.phone %></td>
+                                        <td><%= new Date(v.expected_check_in).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></td>
+                                        <td><%= v.wing %>-<%= v.flat_number %></td>
+                                        <td class="action-cell">
+                                            <form action="/staff/visitors/<%= v.visitor_id %>/check-in" method="POST">
+                                                <button type="submit" class="btn btn-success btn-small">Check-in</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    <% } %>
+
+                    <h2 class="section-title" style="margin-top: 2rem;">Currently Checked-in Visitors</h2>
+                    <% if (checkedInVisitors.length === 0) { %>
+                        <p>No visitors currently in the society.</p>
+                    <% } else { %>
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Checked In</th>
+                                    <th>Flat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% checkedInVisitors.forEach(v => { %>
+                                    <tr>
+                                        <td><%= v.name %></td>
+                                        <td><%= v.phone %></td>
+                                        <td><%= new Date(v.actual_check_in).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></td>
+                                        <td><%= v.wing %>-<%= v.flat_number %></td>
+                                        <td class="action-cell">
+                                            <form action="/staff/visitors/<%= v.visitor_id %>/check-out" method="POST">
+                                                <button type="submit" class="btn btn-danger btn-small">Check-out</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    <% } %>
+                </div>
+            </div> </div> </div> </body>
+</html>

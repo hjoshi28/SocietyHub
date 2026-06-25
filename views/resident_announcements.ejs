@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Society Announcements</title>
+    <link rel="stylesheet" href="/css/resident_announcements.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-header">
+        <h1>Society Announcements</h1>
+        <a href="/resident/dashboard" class="back-link">&larr; Back to Dashboard</a>
+    </div>
+
+    <div class="announcements-container">
+        <% if (announcements.length === 0) { %>
+            <p class="no-data-message">There are no announcements at this time.</p>
+        <% } else { %>
+            <% announcements.forEach(ann => { %>
+                <div class="ann-card">
+                    <h3><%= ann.title %></h3>
+                    <p class="ann-meta">
+                        Posted by <strong><%= ann.posted_by %></strong> 
+                        on <%= new Date(ann.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %>
+                    </p>
+                    <div class="ann-body"><%= ann.body %></div>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</body>
+</html>

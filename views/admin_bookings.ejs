@@ -1,0 +1,196 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Bookings</title>
+  <style>
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px;}
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .form-container { background-color: #f9f9f9; border: 1px solid #ccc; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Admin - All Amenity Bookings</h1>
+  <a href="/admin/dashboard">Back to Dashboard</a>
+  <hr>
+<% if (typeof error !== 'undefined' && error) { %>
+    <p style="color: red; font-weight: bold; border: 1px solid red; padding: 10px; border-radius: 5px;">
+      <%= error %>
+    </p>
+  <% } %>
+  <div class="form-container">
+    <h3>Block Amenity for Maintenance</h3>
+    <form action="/admin/amenities/block" method="POST">
+      <div style="display: flex; gap: 15px;">
+        <div>
+          <label for="amenity_id">Amenity:</label><br>
+          <select name="amenity_id" required>
+            <% amenities.forEach(a => { %>
+              <option value="<%= a.amenity_id %>"><%= a.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div>
+          <label for="booking_date">Date:</label><br>
+          <input type="date" name="booking_date" required>
+        </div>
+        <div>
+          <label for="start_hour">Start Time (1hr):</label><br>
+          <select name="start_hour" required>
+            <option value="09:00">9:00 AM</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="11:00">11:00 AM</option>
+            <option value="12:00">12:00 PM</option>
+            <option value="13:00">1:00 PM</option>
+            <option value="14:00">2:00 PM</option>
+            <option value="15:00">3:00 PM</option>
+            <option value="16:00">4:00 PM</option>
+            <option value="17:00">5:00 PM</option>
+          </select>
+        </div>
+        <div>
+          <br>
+          <button type="submit">Block Slot</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <h2>Upcoming Bookings</h2>
+  <% if (bookings.length === 0) { %>
+    <p>There are no upcoming bookings.</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time Slot</th>
+          <th>Amenity</th>
+          <th>Booked By</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% bookings.forEach(book => { %>
+          <tr>
+            <td><%= new Date(book.start_time).toLocaleDateString() %></td>
+            <td>
+              <%= new Date(book.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %> - 
+              <%= new Date(book.end_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %>
+            </td>
+            <td><%= book.amenity_name %></td>
+            
+            <td>
+              <% if (book.booker_role === 'admin') { %>
+                <strong style="color: red;">Blocked (Maintenance)</strong>
+              <% } else { %>
+                <%= book.booker_name %>
+              <% } %>
+            </td>
+            <td>₹<%= book.total_cost %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Bookings</title>
+    <link rel="stylesheet" href="/css/admin_bookings.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin - All Amenity Bookings</h1>
+        <a href="/admin/dashboard" class="back-link">&larr; Back to Dashboard</a>
+
+        <div class="content-wrapper">
+
+            <% if (typeof error !== 'undefined' && error) { %>
+                <p class="error-message"><%= error %></p>
+            <% } %>
+
+            <div class="form-container">
+                <h3>Block Amenity for Maintenance</h3>
+                <form action="/admin/amenities/block" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="amenity_id">Amenity:</label>
+                            <select name="amenity_id" id="amenity_id" required>
+                                <% amenities.forEach(a => { %>
+                                    <option value="<%= a.amenity_id %>"><%= a.name %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking_date">Date:</label>
+                            <input type="date" name="booking_date" id="booking_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_hour">Start Time (1hr):</label>
+                            <select name="start_hour" id="start_hour" required>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-group-button">
+                            <button type="submit" class="btn btn-primary">Block Slot</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <h2 class="section-title">Upcoming Bookings</h2>
+            <% if (bookings.length === 0) { %>
+                <p>There are no upcoming bookings.</p>
+            <% } else { %>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time Slot</th>
+                            <th>Amenity</th>
+                            <th>Booked By</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% bookings.forEach(book => { %>
+                            <tr>
+                                <td><%= new Date(book.start_time).toLocaleDateString() %></td>
+                                <td>
+                                    <%= new Date(book.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %> - 
+                                    <%= new Date(book.end_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %>
+                                </td>
+                                <td><%= book.amenity_name %></td>
+                                
+                                <td>
+                                    <% if (book.booker_role === 'admin') { %>
+                                        <span class="status-Blocked">Blocked (Maintenance)</span>
+                                    <% } else { %>
+                                        <%= book.booker_name %>
+                                    <% } %>
+                                </td>
+                                <td>₹<%= book.total_cost %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } %>
+
+        </div> </div> </body>
+</html>

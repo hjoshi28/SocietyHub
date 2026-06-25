@@ -1,0 +1,200 @@
+/* ===== Reset and base styling ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgb(28,28,52), #8f94fb);
+  color: #333;
+  padding-bottom: 2rem; /* Add space at the bottom */
+}
+
+/* ===== Main Header ===== */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Center the header content */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #fff;
+}
+
+.main-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.logout-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background: #fff;
+  color: #4e54c8;
+}
+
+/* ===== Main Content Container ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Space between card sections */
+}
+
+/* ===== Base Card Styling ===== */
+.card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Allows content to grow */
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #444;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* ===== Quick Links Card ===== */
+.nav-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  gap: 12px;
+}
+
+.nav-card li a {
+  display: block;
+  padding: 0.6rem 1rem;
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #4e54c8;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-card li a:hover {
+  background-color: #e2e5ff;
+  color: #3b42b0;
+}
+
+/* ===== Dashboard Grid ===== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ===== Summary Cards (in grid) ===== */
+.card .value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.card .context {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  /* This pushes the link to the bottom */
+  flex-grow: 1;
+}
+
+.card h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Dynamic colors */
+.value-danger {
+  color: #d93025;
+}
+.value-success {
+  color: #1e8e3e;
+}
+
+.card-link {
+  text-decoration: none;
+  color: #4e54c8;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: text-decoration 0.3s ease;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* Full-width card in grid */
+.card-full-width {
+  grid-column: 1 / -1;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+  /* Stack to 2 columns */
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Stack header items */
+  .main-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+  
+  /* Stack grid to 1 column */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+
+  .card .value {
+    font-size: 1.8rem;
+  }
+
+  /* Make nav links full-width for easy tapping */
+  .nav-card li {
+    width: 100%;
+  }
+  .nav-card li a {
+    text-align: center;
+  }
+}

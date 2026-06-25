@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/assign_complaint.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Assign Complaint</title>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>Assign Complaint</h1>
+        <a href="/admin/complaints" class="header-link secondary-link">Back to Complaint List</a> 
+    </header>
+
+    <main class="container">
+        <div class="card"> 
+            
+            <h2 class="complaint-title">Complaint: <%= complaint.title %></h2>
+
+            <% if (typeof error !== 'undefined' && error) { %>
+                <p class="error-message"><%= error %></p>
+            <% } %>
+
+            <form action="/admin/complaints/<%= complaint.complaint_id %>/assign" method="POST">
+                <div class="form-group">
+                    <label for="staff_user_id">Assign to Staff Member:</label>
+                    <select name="staff_user_id" id="staff_user_id" required>
+                        <option value="">-- Select Staff --</option>
+                        <% staffList.forEach(staff => { %>
+                            <option value="<%= staff.user_id %>">
+                                <%= staff.full_name %> (<%= staff.specialty %>)
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit">Assign & Set to 'In Progress'</button>
+                </div>
+            </form>
+
+        </div>
+    </main>
+
+</body>
+</html>

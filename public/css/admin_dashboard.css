@@ -1,0 +1,118 @@
+/* ===== Base Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== Body ===== */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgb(28,28,52), #8f94fb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+/* ===== Container ===== */
+.container {
+  text-align: center;
+  width: 90%;
+  max-width: 1000px;
+}
+
+/* ===== Heading & Description ===== */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #e6e6e6;
+  margin-bottom: 2.5rem;
+}
+
+/* ===== Dashboard Grid ===== */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.8rem;
+  justify-items: center;
+  margin-bottom: 3rem;
+}
+
+/* ===== Dashboard Cards ===== */
+.dashboard a {
+  background: #fff;
+  color: #4e54c8;
+  text-decoration: none;
+  padding: 1.8rem 1rem;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 240px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard a i {
+  font-size: 2rem;
+  margin-bottom: 0.7rem;
+  color: #4e54c8;
+}
+
+/* Hover Effects */
+.dashboard a:hover {
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  color: #fff;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.dashboard a:hover i {
+  color: #fff;
+}
+
+/* ===== Logout Button ===== */
+.logout-btn {
+  display: inline-block;
+  background-color: #ff4d4d;
+  color: #fff;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255, 77, 77, 0.4);
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #e03e3e;
+  transform: translateY(-3px);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard a {
+    max-width: 100%;
+  }
+}

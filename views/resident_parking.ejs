@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/resident_parking.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>My Parking</title>
+</head>
+<body>
+
+  <header class="main-header">
+    <h1>My Parking Details</h1>
+    <a href="/resident/dashboard" class="header-link">Back to Dashboard</a>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <% if (parking) { %>
+        <dl class="parking-details">
+          <div class="detail-item">
+            <dt>Slot Number</dt>
+            <dd class="slot-number"><%= parking.slot_number %></dd>
+          </div>
+          <div class="detail-item">
+            <dt>Vehicle Number</dt>
+            <dd><%= parking.vehicle_number %></dd>
+          </div>
+          <div class="detail-item">
+            <dt>Vehicle Type</dt>
+            <dd><%= parking.vehicle_type %></dd>
+          </div>
+          <div class="detail-item">
+            <dt>Slot Type</dt>
+            <dd><%= parking.is_covered ? 'Covered' : 'Open' %></dd>
+          </div>
+        </dl>
+      <% } else { %>
+        <p class="empty-message">You have not been assigned a parking spot. Please contact the admin office.</p>
+      <% } %>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+/* ===== Reset and base styling ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, rgb(28,28,52), #8f94fb);
+  color: #333;
+}
+
+/* ===== Page heading ===== */
+h1 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* ===== Error message ===== */
+p[style] {
+  color: #ff4d4d !important;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* ===== Form container ===== */
+form {
+  background: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Input fields ===== */
+form div {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #4e54c8;
+  outline: none;
+  box-shadow: 0 0 6px rgba(78, 84, 200, 0.3);
+}
+
+/* ===== Button ===== */
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4e54c8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #3b42b0;
+}
+
+/* ===== Register link ===== */
+p {
+  margin-top: 1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 500;
+}
+
+p a {
+  color: #fff;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+p a:hover {
+  color: #dce2ff;
+}
+
+/* ===== Responsive design ===== */
+@media (max-width: 480px) {
+  form {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+}

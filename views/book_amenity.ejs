@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book <%= amenity.name %></title>
+  <link rel="stylesheet" href="/css/book_amenity.css"> 
+</head>
+<body>
+  
+  <div class="content-wrapper">
+
+    <div class="header-actions">
+      <a href="/resident/amenities" class="link-back">Back to All Amenities</a>
+    </div>
+    <hr>
+    
+    <h1>Book: <%= amenity.name %></h1>
+    <p class="cost-info">Cost: **₹<%= amenity.hourly_cost %>** per hour</p>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <p class="error-message"><%= error %></p>
+    <% } %>
+
+    <div class="form-section-container">
+      <h2>Book a New Slot (1-hour)</h2>
+      <form action="/resident/amenities/<%= amenity.amenity_id %>" method="POST">
+        <div>
+          <label for="booking_date">Date:</label>
+          <input type="date" id="booking_date" name="booking_date" required>
+        </div>
+        
+        <div>
+          <label for="start_hour">Start Time (e.g., 9:00):</label>
+          <select id="start_hour" name="start_hour" required>
+            <option value="">-- Select Hour --</option>
+            <option value="09:00">9:00 AM</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="11:00">11:00 AM</option>
+            <option value="12:00">12:00 PM</option>
+            <option value="13:00">1:00 PM</option>
+            <option value="14:00">2:00 PM</option>
+            <option value="15:00">3:00 PM</option>
+            <option value="16:00">4:00 PM</option>
+            <option value="17:00">5:00 PM</option>
+            <option value="18:00">6:00 PM</option>
+          </select>
+        </div>
+        
+        <button type="submit">Book Slot</button>
+      </form>
+    </div>
+
+    <h2>Upcoming Bookings</h2>
+    <% if (bookings.length === 0) { %>
+      <p class="no-data">No upcoming bookings for this amenity.</p>
+    <% } else { %>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time Slot</th>
+              <th>Booked By</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% bookings.forEach(book => { %>
+              <tr class="<%= book.booker_role === 'admin' ? 'maintenance-slot' : '' %>">
+                <td><%= new Date(book.start_time).toLocaleDateString() %></td>
+                <td>
+                  <%= new Date(book.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %> - 
+                  <%= new Date(book.end_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %>
+                </td>
+                <td>
+                <% if (book.booker_role === 'admin') { %>
+                  <span class="maintenance-text">Blocked (Maintenance)</span>
+                <% } else { %>
+                  <%= book.resident_name %>
+                <% } %>
+              </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+
+  </div>
+</body>
+</html>

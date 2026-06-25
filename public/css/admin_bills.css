@@ -1,0 +1,453 @@
+/* ===== Google Font Import ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===== CSS Variables ===== */
+:root {
+    --primary-color: #4e54c8;
+    --primary-color-hover: #4148b1;
+    --gradient-start: #8f94fb;
+    --gradient-bg: linear-gradient(135deg, rgb(28, 28, 52), #8f94fb);
+    
+    --danger-color: #ff4d4d;
+    --danger-color-hover: #e03e3e;
+    --danger-text: #d90000;
+    --danger-bg: #ff4d4d1a;
+    
+    --success-color: #28a745;
+    --success-color-hover: #218838;
+
+    /* NEW: Pending/Warning Color */
+    --pending-color: #f0ad4e;
+    --pending-text: #c0800c;
+
+    --white: #ffffff;
+    --light-bg: #f9faff;
+    --text-dark: #333;
+    --text-light: #e6e6e6;
+    --text-accent: #4e54c8;
+    
+    --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    --border-radius-main: 14px;
+    --border-radius-sub: 8px;
+}
+
+/* ===== Base Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== Body ===== */
+body {
+    min-height: 100vh;
+    background: var(--gradient-bg);
+    padding: 30px 15px;
+    color: var(--white);
+    line-height: 1.6;
+}
+
+/* ===== Container ===== */
+.container {
+    width: 90%;
+    max-width: 1200px; /* Wider for admin dashboard */
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ===== Typography ===== */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 600;
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: var(--white);
+    transform: translateX(-3px);
+}
+
+/* ===== Content Wrapper (Main Card) ===== */
+.content-wrapper {
+    background: var(--white);
+    color: var(--text-dark);
+    text-align: left;
+    padding: 2.5rem;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--card-shadow);
+    margin-top: 1rem;
+}
+
+/* ===== Error & Info Messages ===== */
+.error-message {
+    background-color: var(--danger-bg);
+    border: 1px solid var(--danger-color);
+    color: var(--danger-text);
+    padding: 1rem;
+    border-radius: var(--border-radius-sub);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ===== NEW: Top Grid Layout ===== */
+.grid-layout-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+/* ===== NEW: Info Card (For Scheduler) ===== */
+.info-card {
+    background-color: var(--light-bg);
+    border: 1px solid #e0e0ff;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.info-card h3 {
+    color: var(--text-accent);
+    margin-top: 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.info-card p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+#countdown-timer {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.settings-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+.settings-list li {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.settings-list li strong {
+    color: var(--text-dark);
+    margin-right: 5px;
+}
+
+
+/* ===== Total Due Box ===== */
+.total-due-box {
+    background-color: var(--light-bg);
+    border-left: 5px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-sub);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    height: 100%; /* Match grid height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.total-due-box strong {
+    color: var(--primary-color);
+    font-size: 2rem; /* Made bigger */
+    display: block;
+    margin-top: 5px;
+}
+
+
+/* ===== Form Styling ===== */
+.form-container {
+    background-color: var(--light-bg);
+    border: 1px solid #e0e0ff;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2.5rem;
+}
+
+.assignment-subtitle {
+    color: var(--text-dark);
+    margin-top: 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.25rem; /* Adjusted from h2 default */
+}
+
+/* Form Row for side-by-side inputs */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 1.25rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 150px;
+    margin-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-accent);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-sub);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    background-color: var(--white);
+    transition: 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="date"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+}
+
+/* ===== Button Styling ===== */
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: var(--border-radius-sub);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--gradient-start));
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(78, 84, 200, 0.3);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 15px rgba(78, 84, 200, 0.4);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-color-hover);
+}
+
+/* Success Button */
+.btn-success {
+    background-color: var(--success-color);
+    color: var(--white);
+}
+
+.btn-success:hover {
+    background-color: var(--success-color-hover);
+}
+
+/* Small Button (for tables) */
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+
+/* ===== Table Styling ===== */
+.section-title {
+    text-align: left;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-accent);
+}
+
+/* NEW: Wrapper for responsive table */
+.table-responsive-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Adds horizontal scroll on small screens */
+}
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: var(--border-radius-sub);
+    overflow: hidden; /* Ensures radius is applied to corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    min-width: 800px; /* Prevents table from squishing too much */
+}
+
+.content-table th,
+.content-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.content-table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.content-table tbody tr:nth-child(even) {
+    background-color: var(--light-bg);
+}
+
+.content-table tbody tr:hover {
+    background-color: #f0f2ff;
+}
+
+/* ===== Table Status & Action Cell Styling ===== */
+.content-table .status-Unpaid {
+    color: var(--danger-text);
+    font-weight: 700;
+}
+
+.content-table .status-Paid {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+/* NEW: Pending Status */
+.content-table .status-PendingVerification {
+    color: var(--pending-text);
+    font-weight: 700;
+}
+
+/* Status text for Paid/Awaiting */
+.status-text-paid {
+    color: var(--success-color);
+    font-weight: 500;
+}
+.status-text-awaiting {
+    color: #777;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Action Cell Content */
+.action-cell {
+    text-align: center;
+    min-width: 160px;
+}
+
+.action-cell form {
+    margin: 0;
+    display: inline-block;
+}
+
+.screenshot-link {
+    display: block;
+    background-color: #f0f2ff;
+    color: var(--primary-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius-sub);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-bottom: 8px; /* Space from button */
+}
+
+.screenshot-link:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 900px) {
+    .grid-layout-top {
+        grid-template-columns: 1fr; /* Stack cards on mobile */
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 0;
+    }
+
+    .form-row .form-group {
+        margin-bottom: 1.25rem;
+    }
+    
+    .content-wrapper {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .content-wrapper {
+        padding: 1rem;
+    }
+    .form-container {
+        padding: 1rem 1.25rem;
+    }
+}

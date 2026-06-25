@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Manage Users</title>
+  <link rel="stylesheet" href="/css/admin_users.css"> 
+  <script>
+    // Add a confirmation before deleting
+    function confirmDelete(form) {
+      if (confirm('Are you sure you want to permanently delete this user? This cannot be undone.')) {
+        form.submit();
+      }
+    }
+  </script>
+</head>
+<body>
+  
+  <h1>Admin - User Management</h1>
+  <div class="header-actions">
+    <a href="/admin/dashboard" class="link-back">Back to Dashboard</a>
+    <a href="/admin/users/new" class="button-primary">
+      + Create New User
+    </a>
+  </div>
+  <hr>
+
+  <h2>Residents</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email / Phone</th>
+          <th>Assigned Flat</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.filter(u => u.role === 'resident').forEach(u => { %>
+          <tr>
+            <td><%= u.full_name %></td>
+            <td class="contact-info"><%= u.email %><br><%= u.phone %></td>
+            <td>
+              <% if (u.wing) { %>
+                <span class="flat-assigned"><%= u.wing %>-<%= u.flat_number %></span>
+              <% } else { %>
+                <a href="/admin/users/<%= u.user_id %>/assign-flat" class="link-action">Assign Flat</a>
+              <% } %>
+            </td>
+            <td class="status-<%= u.is_active %>">
+              <%= u.is_active ? 'Active' : 'Deactivated' %>
+            </td>
+            <td>
+              <form action="/admin/users/<%= u.user_id %>/toggle-active" method="POST" style="display:inline;">
+                <button type="submit" class="button-action toggle-btn">
+                  <%= u.is_active ? 'Deactivate' : 'Activate' %>
+                </button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Staff & Admins</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email / Phone</th>
+          <th>Role</th>
+          <th>Specialty</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.filter(u => u.role !== 'resident').forEach(u => { %>
+          <tr>
+            <td><%= u.full_name %></td>
+            <td class="contact-info"><%= u.email %><br><%= u.phone %></td>
+            <td class="role-<%= u.role.toLowerCase() %>"><%= u.role %></td>
+            <td><%= u.specialty || 'N/A' %></td> 
+            <td class="status-<%= u.is_active %>">
+              <%= u.is_active ? 'Active' : 'Deactivated' %>
+            </td>
+            <td>
+              <form action="/admin/users/<%= u.user_id %>/toggle-active" method="POST" style="display:inline;">
+                <button type="submit" class="button-action toggle-btn">
+                  <%= u.is_active ? 'Deactivate' : 'Activate' %>
+                </button>
+              </form>
+              <form action="/admin/users/<%= u.user_id %>/delete" method="POST" style="display:inline;" onsubmit="event.preventDefault(); confirmDelete(this);">
+                <button type="submit" class="button-action delete-btn">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

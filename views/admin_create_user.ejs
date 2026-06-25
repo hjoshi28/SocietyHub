@@ -1,0 +1,141 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create New User</title>
+  <script>
+    /* Simple script to show/hide specialty field */
+    function checkRole() {
+      var role = document.getElementById('role').value;
+      var specialtyDiv = document.getElementById('specialty_div');
+      if (role === 'staff') {
+        specialtyDiv.style.display = 'block';
+      } else {
+        specialtyDiv.style.display = 'none';
+      }
+    }
+  </script>
+</head>
+<body onload="checkRole()">
+  <h1>Admin - Create a New User</h1>
+  <a href="/admin/users">Back to User List</a>
+  <hr>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
+
+  <form action="/admin/users/new" method="POST">
+    <div>
+      <label for="full_name">Full Name:</label><br>
+      <input type="text" id="full_name" name="full_name" required>
+    </div>
+    <br>
+    <div>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <br>
+    <div>
+      <label for="phone">Phone:</label><br>
+      <input type="text" id="phone" name="phone" required>
+    </div>
+    <br>
+    <div>
+      <label for="password">Initial Password:</label><br>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <br>
+    <div>
+      <label for="role">User Role:</label><br>
+      <select name="role" id="role" onchange="checkRole()" required>
+        <option value="resident">Resident</option>
+        <option value="staff">Staff</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+    <br>
+    <div id="specialty_div" style="display: none;">
+      <label for="specialty">Staff Specialty (e.g., Security, Plumber):</label><br>
+      <input type="text" id="specialty" name="specialty">
+    </div>
+    <br>
+    <button type="submit">Create User</button>
+  </form>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New User</title>
+    <link rel="stylesheet" href="/css/admin_create_user.css"> 
+    <script>
+        /* Simple script to show/hide specialty field */
+        function checkRole() {
+            var role = document.getElementById('role').value;
+            var specialtyDiv = document.getElementById('specialty_div');
+            if (role === 'staff') {
+                specialtyDiv.style.display = 'block';
+            } else {
+                specialtyDiv.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body onload="checkRole()">
+
+    <div class="container">
+        <h1>Admin - Create a New User</h1>
+        <a href="/admin/users" class="back-link">&larr; Back to User List</a>
+
+        <div class="content-wrapper">
+            
+            <% if (typeof error !== 'undefined' && error) { %>
+                <p class="error-message"><%= error %></p>
+            <% } %>
+
+            <form action="/admin/users/new" method="POST">
+                
+                <div class="form-group">
+                    <label for="full_name">Full Name:</label>
+                    <input type="text" id="full_name" name="full_name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Initial Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">User Role:</label>
+                    <select name="role" id="role" onchange="checkRole()" required>
+                        <option value="resident">Resident</option>
+                        <option value="staff">Staff</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                
+                <div id="specialty_div" class="form-group" style="display: none;">
+                    <label for="specialty">Staff Specialty (e.g., Security, Plumber):</label>
+                    <input type="text" id="specialty" name="specialty">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Create User</button>
+            </form>
+
+        </div> </div> </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bills</title>
+    <link rel="stylesheet" href="/css/resident_bills.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-header">
+        <h1>My Maintenance Bills</h1>
+        <a href="/resident/dashboard" class="back-link">&larr; Back to Dashboard</a>
+    </div>
+
+   <div class="summary-card">
+        <h2>Total Outstanding Due:</h2>
+        <div class="total-due">
+            ₹<%= parseInt(totalUnpaid).toFixed(2) %>
+        </div>
+        <% if (totalUnpaid > 0) { %>
+            <a href="/resident/bills/pay-all" class="pay-button">Pay All Unpaid Bills</a>
+        <% } %>
+    </div>
+    
+    <h2>Billing History</h2>
+
+    <% if (bills.length === 0) { %>
+        <p class="no-data-message">You have no billing history.</p>
+    <% } else { %>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Flat</th>
+                        <th>Generated</th>
+                        <th>Due Date</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% bills.forEach(bill => { %>
+                        <tr>
+                            <td><%= bill.bill_id %></td>
+                            <td><%= bill.wing %>-<%= bill.flat_number %></td>
+                            <td><%= new Date(bill.generated_at).toLocaleDateString() %></td>
+                            <td><%= new Date(bill.due_date).toLocaleDateString() %></td>
+                            <td><%= bill.description %></td>
+                            <td class="amount">₹<%= parseInt(bill.amount).toFixed(2) %></td>
+                            <td class="status-cell">
+                                <span class="status-tag status-<%= bill.status.toLowerCase() %>">
+                                    <%= bill.status %>
+                                </span>
+                            </td>
+                            <td>
+                                <% if (bill.status === 'Unpaid') { %>
+                                    <a href="/resident/bills/<%= bill.bill_id %>/pay" class="pay-action-link">Pay Now</a>
+                                <% } else { %>
+                                    <span class="paid-action-link">View Receipt</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+
+</body>
+</html>

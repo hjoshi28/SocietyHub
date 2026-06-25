@@ -1,0 +1,131 @@
+/* ===== Reset and base styling ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Base Body Styling (Adapted for a list/content page) */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    /* Consistent Gradient Background */
+    background: linear-gradient(135deg, rgb(28,28,52), #8f94fb);
+    color: #333;
+    padding: 30px 20px;
+}
+
+/* ===== General Page Header/Back Link Styling (Consistent with Amenity List) ===== */
+
+/* Header/Back Link Wrapper */
+.page-header {
+    width: 100%;
+    max-width: 800px; /* Setting a comfortable reading width for text */
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+/* H1 Title */
+.page-header h1 {
+    color: #fff;
+    font-size: 2rem;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-block;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.back-link:hover {
+    color: #dce2ff;
+}
+
+/* --- ANNOUNCEMENT CARD STYLING --- */
+
+.announcements-container {
+    width: 100%;
+    max-width: 800px; /* Consistent with header width */
+    padding: 0 10px;
+}
+
+/* Announcement Card */
+.ann-card {
+    /* Applying the consistent elevated white box look */
+    background: #ffffff;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.ann-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Announcement Title */
+.ann-card h3 {
+    color: #4e54c8; /* Primary color for emphasis */
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Metadata (Author & Date) */
+.ann-meta {
+    font-size: 0.9em;
+    color: #777;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    /* Simple separator line */
+    border-bottom: 1px solid #eee; 
+    font-weight: 400;
+}
+
+.ann-meta strong {
+    font-weight: 600;
+    color: #555;
+}
+
+/* Announcement Body */
+.ann-body {
+    color: #333;
+    line-height: 1.6;
+    font-size: 1rem;
+    white-space: pre-wrap; /* Respects new lines/formatting from source text */
+}
+
+/* No Data Message (Consistent Styling) */
+.no-data-message {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-top: 50px;
+    padding: 1rem;
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+    .page-header h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    .page-header .back-link {
+        display: block;
+        text-align: center;
+    }
+}

@@ -1,0 +1,137 @@
+/* ===== Reset and base styling ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgb(28,28,52), #8f94fb);
+  color: #333;
+}
+
+/* ===== Main container ===== */
+.container {
+  width: 100%;
+  max-width: 500px; /* A bit wider for the textarea */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== Page heading ===== */
+h1 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ===== Form container ===== */
+.complaint-form {
+  background: #ffffff;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Error message ===== */
+.error-message {
+  color: #d93025;
+  background: #fdeaec;
+  border: 1px solid #f9d0d3;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+
+/* ===== Back Link ===== */
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4e54c8;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+  color: #3b42b0;
+}
+
+/* ===== Input fields ===== */
+.input-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #444;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
+textarea {
+  resize: vertical; /* Allow vertical resize, not horizontal */
+  min-height: 100px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #4e54c8;
+  outline: none;
+  box-shadow: 0 0 6px rgba(78, 84, 200, 0.3);
+}
+
+/* ===== Button ===== */
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4e54c8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #3b42b0;
+}
+
+/* ===== Responsive design ===== */
+@media (max-width: 520px) {
+  form {
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}

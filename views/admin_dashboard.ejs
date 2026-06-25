@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin_dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome, <%= user.name %> (Admin)</h1>
+    <p>This is the admin dashboard. You can manage users, bills, and complaints here.</p>
+
+    <div class="dashboard">
+      <a href="/admin/complaints"><i class="fa-solid fa-comment-dots"></i> Manage Complaints</a>
+      <a href="/admin/bookings"><i class="fa-solid fa-calendar-check"></i> View All Bookings</a>
+      <a href="/admin/bills"><i class="fa-solid fa-file-invoice-dollar"></i> Manage Bills</a>
+      <a href="/admin/reports"><i class="fa-solid fa-chart-line"></i> View Reports</a>
+      <a href="/admin/parking"><i class="fa-solid fa-car"></i> Manage Parking</a>
+      <a href="/admin/announcements"><i class="fa-solid fa-bullhorn"></i> Announcements</a>
+      <a href="/admin/users"><i class="fa-solid fa-users"></i> Manage Users</a>
+      <a href="/admin/flats"><i class="fa-solid fa-building"></i> Manage Flats</a>
+      <a href="/admin/audit-log"><i class="fa-solid fa-file"></i>View Audit Log</a>
+    </div>
+
+    <a href="/logout" class="logout-btn">Logout</a>
+  </div>
+</body>
+</html>

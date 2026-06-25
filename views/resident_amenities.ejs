@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book an Amenity</title>
+  <link rel="stylesheet" href="/css/resident_amenities.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="main-header">
+    <h1>Available Amenities</h1>
+    <a href="/resident/dashboard" class="header-link">&larr; Back to Dashboard</a>
+  </header>
+
+  <main class="container">
+    <% if (amenities && amenities.length > 0) { %>
+      <div class="amenity-list">
+        <% amenities.forEach(amenity => { %>
+          <div class="amenity-card">
+            <h3><%= amenity.name %></h3>
+            <p class="cost-detail">
+              Cost: <strong>₹<%= amenity.hourly_cost %></strong> per hour
+            </p>
+            
+            <a href="/resident/amenities/<%= amenity.amenity_id %>" class="primary-action-link">
+              View Schedule & Book &rarr;
+            </a>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="no-data-message">No amenities are currently available for booking.</p>
+    <% } %>
+  </main>
+
+</body>
+</html>

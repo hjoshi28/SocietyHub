@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/resident_mybookings.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>My Bookings</title>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>My Upcoming Bookings</h1>
+        <div class="header-links">
+            <a href="/resident/amenities" class="header-link primary-link">Book Amenity</a>
+            <a href="/resident/dashboard" class="header-link secondary-link">Back to Dashboard</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <% if (bookings.length === 0) { %>
+                <p class="empty-message">You have no upcoming amenity bookings.</p>
+            <% } else { %>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Amenity</th>
+                                <th>Date</th>
+                                <th>Time Slot</th>
+                                <th class="cost-column">Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% bookings.forEach(book => { %>
+                                <tr>
+                                    <td><%= book.amenity_name %></td>
+                                    <td><%= new Date(book.start_time).toLocaleDateString() %></td>
+                                    <td>
+                                        <%= new Date(book.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %> - 
+                                        <%= new Date(book.end_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %>
+                                    </td>
+                                    <td class="cost-column">₹<%= book.total_cost %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } %>
+        </div>
+    </main>
+
+</body>
+</html>

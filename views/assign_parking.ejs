@@ -1,0 +1,88 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Parking Spot</title>
+</head>
+<body>
+    <h1>Assign a New Parking Spot</h1>
+    <a href="/admin/parking">Back to Parking Dashboard</a>
+    <hr>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <form action="/admin/parking/assign" method="POST">
+        <div>
+            <label for="user_id">Select Resident:</label><br>
+            <select name="user_id" id="user_id" required>
+                <option value="">-- Select Resident --</option>
+                <% residents.forEach(r => { %>
+                    <option value="<%= r.user_id %>"><%= r.full_name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label for="slot_id">Select Available Slot:</label><br>
+            <select name="slot_id" id="slot_id" required>
+                <option value="">-- Select Slot --</option>
+                <% availableSlots.forEach(s => { %>
+                    <option value="<%= s.slot_id %>"><%= s.slot_number %></option>
+                <% }) %>
+            </select>
+        </div>
+        <br>
+        <button type="submit">Assign Spot</button>
+    </form>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Parking Spot</title>
+    <link rel="stylesheet" href="/css/assign_parking.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <h1>Assign a New Parking Spot</h1>
+        <a href="/admin/parking" class="back-link">&larr; Back to Parking Dashboard</a>
+
+        <div class="content-wrapper">
+
+            <% if (typeof error !== 'undefined' && error) { %>
+                <p class="error-message"><%= error %></p>
+            <% } %>
+
+            <form action="/admin/parking/assign" method="POST">
+                
+                <div class="form-group">
+                    <label for="user_id">Select Resident:</label>
+                    <select name="user_id" id="user_id" required>
+                        <option value="">-- Select Resident --</option>
+                        <% residents.forEach(r => { %>
+                            <option value="<%= r.user_id %>"><%= r.full_name %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="slot_id">Select Available Slot:</label>
+                    <select name="slot_id" id="slot_id" required>
+                        <option value="">-- Select Slot --</option>
+                        <% availableSlots.forEach(s => { %>
+                            <option value="<%= s.slot_id %>"><%= s.slot_number %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Assign Spot</button>
+            </form>
+
+        </div> </div> </body>
+</html>

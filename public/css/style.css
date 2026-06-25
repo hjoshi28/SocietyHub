@@ -1,0 +1,128 @@
+/* ===== Reset and base styling (from your reference file) ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Full-screen gradient background */
+    background: linear-gradient(135deg, rgb(28,28,52), #8f94fb);
+    color: #333;
+    padding: 20px; /* Add padding for small screens */
+}
+
+/* ===== Page heading (from your reference file) ===== */
+h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* --- Form container (based on your reference file) --- */
+form {
+    background: #ffffff;
+    width: 100%;
+    max-width: 450px; /* Slightly wider for the complaint form */
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative; /* Context for absolute positioning of back link if needed, but not here */
+}
+
+/* ===== Error message (Styled to be more robust than p[style]) ===== */
+.error-message {
+    color: #ff4d4d;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    background-color: #ffe0e0;
+    border-radius: 8px;
+    /* Making sure it sits nicely above the form if present */
+    width: 100%; 
+    max-width: 450px;
+    margin-top: 10px;
+}
+
+/* --- Input fields (from your reference file) --- */
+form div {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #444;
+}
+
+input, textarea { /* Applying styles to both input and textarea */
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: "Poppins", sans-serif; /* Ensure textarea uses the correct font */
+    resize: vertical; /* Allow only vertical resizing for textarea */
+}
+
+input:focus, textarea:focus {
+    border-color: #4e54c8;
+    outline: none;
+    box-shadow: 0 0 6px rgba(78, 84, 200, 0.3);
+}
+
+/* ===== Button (from your reference file) ===== */
+button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 0.5rem; /* Add a little space above the button */
+}
+
+button:hover {
+    background-color: #3b42b0;
+}
+
+/* ===== Back Link Styling (NEW) ===== */
+.back-link {
+    display: block;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    color: #4e54c8; /* Using the primary color for prominence */
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #3b42b0;
+    text-decoration: underline;
+}
+
+/* ===== Responsive design (from your reference file) ===== */
+@media (max-width: 500px) {
+    form {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+}

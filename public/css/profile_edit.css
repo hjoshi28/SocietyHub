@@ -1,0 +1,186 @@
+/* ===== Reset and base styling ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgb(28,28,52), #8f94fb);
+  color: #333;
+  padding-bottom: 2rem;
+}
+
+/* ===== Main Header ===== */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #fff;
+}
+
+.main-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.header-link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.header-link:hover {
+  background: #fff;
+  color: #4e54c8;
+}
+
+/* ===== Main Content Container ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ===== Alert Messages ===== */
+.alert {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.alert-danger {
+  color: #d93025;
+  background: #fdeaec;
+  border: 1px solid #f9d0d3;
+}
+
+.alert-success {
+  color: #1e8e3e;
+  background: #e6f4ea;
+  border: 1px solid #c6e6d1;
+}
+
+/* ===== Profile Form Layout ===== */
+.profile-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* ===== Card Styling ===== */
+.card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* ===== Form fields (from login.css) ===== */
+.input-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #4e54c8;
+  outline: none;
+  box-shadow: 0 0 6px rgba(78, 84, 200, 0.3);
+}
+
+/* Style for readonly/disabled inputs */
+input[readonly],
+input:disabled {
+  background-color: #f0f2f5;
+  cursor: not-allowed;
+  border-color: #ddd;
+}
+input[readonly]:focus,
+input:disabled:focus {
+  box-shadow: none;
+  border-color: #ddd;
+}
+
+/* ===== Button (from login.css) ===== */
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4e54c8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 0.5rem; /* Space from last input */
+}
+
+button:hover {
+  background-color: #3b42b0;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+  /* Stack the two form cards */
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Stack header items */
+  .main-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+}

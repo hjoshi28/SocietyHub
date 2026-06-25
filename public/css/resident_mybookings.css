@@ -1,0 +1,227 @@
+/*
+ * Base styles from reference CSS
+ */
+:root {
+  --primary-color: #4e54c8;
+  --primary-light: #8f94fb;
+  --text-dark: #333;
+  --text-light: #444;
+  --background-light: #ffffff;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --danger-color: #ff4d4d; 
+  --dark-bg: rgb(28,28,52);
+  --maintenance-color: #dc3545; /* Specific color for maintenance blocks */
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* KEEPING THE BACKGROUND COLOR SAME AS REQUESTED */
+    background: linear-gradient(135deg, var(--dark-bg), var(--primary-light)); 
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px; /* Add some padding around the edges */
+}
+
+/* * Header Styling (Similar to h1 and button styles in reference)
+ */
+.main-header {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.main-header h1 {
+    /* Using the h1 style from reference */
+    color: #fff;
+    font-size: 2rem;
+    margin: 0; /* Remove default margin */
+}
+
+.header-links {
+    display: flex;
+    gap: 15px;
+}
+
+.header-link {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.primary-link {
+    /* Based on the button style in reference */
+    background-color: #4e54c8;
+    color: white;
+    border: 1px solid #4e54c8;
+}
+
+.primary-link:hover {
+    background-color: #3b42b0;
+    border-color: #3b42b0;
+}
+
+.secondary-link {
+    /* Complementary link style */
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.secondary-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* * Main Content and Card Styling (Similar to form container in reference)
+ */
+.container {
+    flex-grow: 1; /* Allows the container to fill the remaining space */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.card {
+    /* Using the form/card style from reference */
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* * Table Styling
+ */
+.table-responsive {
+    overflow-x: auto; /* Makes table scrollable on small screens */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Helps control column widths */
+}
+
+thead th {
+    background-color: #f4f6f9;
+    color: #444;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background-color: #f9f9ff; /* Light hover effect */
+}
+
+.cost-column {
+    font-weight: 600;
+    color: #4e54c8;
+    width: 100px; /* Give the cost column a fixed width */
+    text-align: right; /* Align cost to the right */
+}
+
+/* * Empty State Message
+ */
+.empty-message {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+
+/* * Responsive Design (From reference, adapted)
+ */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+    
+    .main-header h1 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .header-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .header-link {
+        flex-grow: 1;
+        text-align: center;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+    
+    /* Force table cells to stack on very small screens for better readability */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    tbody tr {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    
+    tbody td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+    
+    tbody td:before {
+        /* Create a pseudo-element for the header */
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+        color: #4e54c8;
+    }
+}

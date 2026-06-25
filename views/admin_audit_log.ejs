@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Log - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin_audit_log.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Audit Log</h1>
+        <a href="/admin/dashboard" class="back-link">&larr; Back to Dashboard</a>
+
+        <div class="content-wrapper">
+
+            <h2 class="section-title">System Event Log</h2>
+            <p class="section-description">This log automatically records all the payments.</p>
+
+            <div class="table-responsive-wrapper">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Action Type</th>
+                            <th>Bill ID</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (logs.length === 0) { %>
+                            <tr class="empty-row">
+                                <td colspan="4">No log entries found.</td>
+                            </tr>
+                        <% } else { %>
+                            <% logs.forEach(log => { %>
+                                <tr>
+                                    <td><%= new Date(log.log_timestamp).toLocaleString() %></td>
+                                    
+                                    <td class="log-type-<%= log.action_type.replace(' ', '-') %>">
+                                        <%= log.action_type %>
+                                    </td>
+                                    
+                                    <td><%= log.related_bill_id || 'N/A' %></td>
+                                    
+                                    <td><%= log.description %></td>
+                                </tr>
+                            <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div> </div> </div> </body>
+</html>

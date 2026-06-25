@@ -1,0 +1,178 @@
+/*
+ * Base styles and layout from reference CSS
+ 
+*/
+:root {
+  --primary-color: #4e54c8;
+  --primary-light: #8f94fb;
+  --text-dark: #333;
+  --text-light: #444;
+  --background-light: #ffffff;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --danger-color: #ff4d4d; 
+  --dark-bg: rgb(28,28,52);
+  --maintenance-color: #dc3545; /* Specific color for maintenance blocks */
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* KEEPING THE BACKGROUND COLOR SAME AS REQUESTED */
+    background: linear-gradient(135deg, var(--dark-bg), var(--primary-light)); 
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+}
+
+/* * Header and Navigation Styling (Adapted from bookings page)
+ */
+.main-header {
+    width: 100%;
+    max-width: 500px; /* Constrain header width for this focused page */
+    margin: 0 auto 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.main-header h1 {
+    /* Using the h1 style from reference */
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 0; 
+}
+
+.header-link {
+    /* Using link styles from previous task */
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.secondary-link {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.secondary-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* * Main Content Container
+ */
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+/* * Card Styling (Identical to form container in reference)
+ */
+.card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* * Complaint Title
+ */
+.complaint-title {
+    /* Using h2 for detail, distinct from page h1 */
+    color: #4e54c8;
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* * Error Message (Equivalent of p[style] in reference)
+ */
+.error-message {
+    color: #ff4d4d !important;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* * Form Group (Equivalent of form div in reference)
+ */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    /* Using label style from reference */
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #444;
+}
+
+/* * Select Field Styling (Similar to input field in reference)
+ */
+select {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    height: 45px; /* Ensure similar height to input */
+    background-color: white;
+    appearance: none; /* Remove default arrow in some browsers */
+    /* Add a custom arrow if desired, but keeping it simple for now */
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    /* Using input:focus style from reference */
+    border-color: #4e54c8;
+    outline: none;
+    box-shadow: 0 0 6px rgba(78, 84, 200, 0.3);
+}
+
+/* * Button Styling (Identical to button in reference)
+ */
+button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #3b42b0;
+}
+
+/* * Responsive design 
+ */
+@media (max-width: 550px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .main-header h1 {
+        margin-bottom: 10px;
+        font-size: 1.6rem;
+    }
+    .card {
+        padding: 1.2rem;
+    }
+}

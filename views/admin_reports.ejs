@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Society Reports</title>
+  <link rel="stylesheet" href="/css/admin_reports.css"> 
+</head>
+<body>
+  
+  <h1>Society Status Report</h1>
+  <div class="header-actions">
+    <a href="/admin/dashboard" class="link-back">Back to Dashboard</a>
+
+  </div>
+  <hr>
+
+  <h2>Overdue Bills Report</h2>
+  <% if (overdueBills.length === 0) { %>
+    <p class="no-data">No overdue bills. All accounts are clear. </p>
+  <% } else { %>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Flat</th>
+            <th>Resident Name</th>
+            <th>Due Date</th>
+            <th class="right-align">Amount Due</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% overdueBills.forEach(bill => { %>
+            <tr>
+              <td><%= bill.wing %>-<%= bill.flat_number %></td>
+              <td><%= bill.resident_name || 'N/A' %></td>
+              <td><%= new Date(bill.due_date).toLocaleDateString() %></td>
+              <td class="right-align amount-due">₹<%= parseInt(bill.amount).toFixed(2) %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+
+  <h2>Quarterly Financial Summary (by Wing)</h2>
+  <% if (quarterlySummary.length === 0) { %>
+    <p class="no-data">No billing data to summarize.</p>
+  <% } else { %>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Quarter</th>
+            <th>Wing</th>
+            <th class="right-align">Total Collected</th>
+            <th class="right-align">Total Outstanding</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% quarterlySummary.forEach(summary => { %>
+            <tr>
+              <td><%= summary.bill_year %></td>
+              <td>Q<%= summary.bill_quarter %></td>
+              <td><%= summary.wing %></td>
+              <td class="right-align collected-amount">+ ₹<%= parseInt(summary.total_paid).toFixed(2) %></td>
+              <td class="right-align outstanding-amount">- ₹<%= parseInt(summary.total_unpaid).toFixed(2) %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+  
+  <h2>Unresolved Complaints Report</h2>
+  <% if (unresolvedComplaints.length === 0) { %>
+    <p class="no-data">No unresolved complaints. </p>
+  <% } else { %>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Complaint</th>
+            <th>Resident</th>
+            <th>Assigned Staff</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% unresolvedComplaints.forEach(comp => { %>
+            <tr>
+              <td class="status-<%= comp.status.replace(' ', '') %>"><%= comp.status %></td>
+              <td><%= comp.title %></td>
+              <td><%= comp.resident_name %></td>
+              <td><%= comp.staff_name || 'Not Assigned' %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+
+</body>
+</html>

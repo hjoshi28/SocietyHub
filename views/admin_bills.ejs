@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Bills - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin_bills.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Bill Management</h1>
+        <a href="/admin/dashboard" class="back-link">&larr; Back to Dashboard</a>
+
+        <div class="content-wrapper">
+            <div class="grid-layout-top">
+                <div class="info-card">
+                    <h3>⏰ Maintenance Bill Generation</h3>
+                    <p>Time until next automatic generation:</p>
+                    <div id="countdown-timer">Calculating...</div>
+                    <ul class="settings-list">
+                        <li><strong>Amount:</strong> ₹2500.00</li>
+                        <li><strong>Schedule:</strong> 5th of every month at 2:00 AM</li>
+                    </ul>
+                </div>
+
+                <div class="total-due-box">
+                    Total Outstanding Due (All Flats)
+                    <strong>₹<%= parseInt(totalUnpaid).toFixed(2) %></strong>
+                </div>
+
+            </div> <div class="form-container">
+                <h2 class="assignment-subtitle">➕ Add Manual Charge / Fine</h2>
+                <form action="/admin/bills/add-fine" method="POST">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="flat_id">Flat:</label>
+                            <select name="flat_id" id="flat_id" required>
+                                <option value="">-- Select Flat --</option>
+                                <% flats.forEach(flat => { %>
+                                    <option value="<%= flat.flat_id %>"><%= flat.wing %>-<%= flat.flat_number %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount:</label>
+                            <input type="number" name="amount" id="amount" required placeholder="e.g., 500">
+                        </div>
+                        <div class="form-group">
+                            <label for="due_date">Due Date:</label>
+                            <input type="date" name="due_date" id="due_date" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <input type="text" name="description" id="description" required placeholder="e.g., Fine: Noise Complaint">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Charge</button>
+                </form>
+            </div> <h2 class="section-title">All Maintenance Bills</h2>
+            
+            <div class="table-responsive-wrapper">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Bill ID</th>
+                            <th>Flat</th>
+                            <th>Resident Name</th> 
+                            <th>Generated On</th>
+                            <th>Due Date</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% bills.forEach(bill => { %>
+                        <tr>
+                            <td><%= bill.bill_id %></td>
+                            <td><%= bill.wing %>-<%= bill.flat_number %></td>
+                            <td><%= bill.resident_name || 'N/A' %></td> 
+                            <td><%= new Date(bill.generated_at).toLocaleDateString() %></td>
+                            <td><%= new Date(bill.due_date).toLocaleDateString() %></td>
+                            <td>₹<%= parseInt(bill.amount).toFixed(2) %></td>
+                            <td><%= bill.description %></td>
+                            
+                            <td class="action-cell">
+                                <% if (bill.status === 'Unpaid') { %>
+                                    <span class="status-text-awaiting">Awaiting Payment</span>
+                                
+                                <% } else if (bill.status === 'Pending Verification') { %>
+                                    <a href="<%= bill.screenshot_path %>" target="_blank" class="screenshot-link">
+                                        View Screenshot
+                                    </a>
+                                    <form action="/admin/bills/<%= bill.bill_id %>/mark-paid" method="POST">
+                                        <button type="submit" class="btn btn-success btn-small">Approve</button>
+                                    </form>
+                                    
+                                <% } else { %>
+                                    <span class="status-text-paid">Paid</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div> </div> </div> <script>
+        // Your countdown timer script (no changes needed)
+        const timerElement = document.getElementById('countdown-timer');
+        function updateCountdown() {
+            const now = new Date();
+            let targetDate = new Date(now.getFullYear(), now.getMonth(), 5, 2, 0, 0); 
+            if (now > targetDate) {
+                targetDate.setMonth(targetDate.getMonth() + 1);
+            }
+            const diff = targetDate.getTime() - now.getTime();
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>

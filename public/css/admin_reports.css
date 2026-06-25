@@ -1,0 +1,156 @@
+/* Color Palette & Fonts */
+:root {
+  --primary-color: #4e54c8;
+  --primary-light: #8f94fb;
+  --text-dark: #333;
+  --text-light: #444;
+  --background-light: #ffffff;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --dark-bg: rgb(28,28,52);
+}
+
+/* Base Layout (Required Background & Scroll-friendly Body) */
+body {
+  /* Enforce required background gradient */
+  background: linear-gradient(135deg, var(--dark-bg), var(--primary-light)); 
+  color: #fff; /* Changed text color to white for better contrast on dark background */
+  padding: 20px 5%; /* Padding around the content */
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* Headings and Structure */
+h1 {
+  color: #fff; /* White color for contrast */
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+h2 {
+  color: #fff; /* White color for contrast */
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+  padding-bottom: 5px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 1.5rem 0;
+}
+
+/* Back Link Style */
+.header-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.link-back {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 5px 0;
+}
+
+.link-back:hover {
+  color: #dce2ff;
+}
+
+/* Table Wrapper (Card for Data) */
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--background-light); /* White background for the table area */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem 1.2rem;
+  border-bottom: none;
+}
+
+td, th {
+  padding: 1rem 1.2rem;
+  border: 1px solid #eee;
+  color: var(--text-dark); /* Ensure text is dark inside the white table */
+  vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f0f3ff;
+}
+
+/* Status & Data Colors */
+.status-Pending, .status-InProgress { 
+  color: var(--warning-color); 
+  font-weight: 600; 
+}
+.status-Resolved { 
+  color: var(--success-color); 
+  font-weight: 600; 
+}
+
+/* Financial Report specific colors */
+.right-align {
+  text-align: right;
+}
+
+.amount-due, .outstanding-amount {
+  color: var(--danger-color); 
+  font-weight: 600;
+}
+
+.collected-amount {
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+.no-data {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.2); /* Dark, subtle background for contrast */
+  color: #fff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  td, th {
+    padding: 0.8rem;
+  }
+}

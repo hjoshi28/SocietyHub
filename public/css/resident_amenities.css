@@ -1,0 +1,148 @@
+/* ===== Reset and base styling ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgb(28,28,52), #8f94fb);
+  color: #333;
+  padding-bottom: 2rem;
+}
+
+/* ===== Main Header ===== */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #fff;
+}
+
+.main-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.header-link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.header-link:hover {
+  background: #fff;
+  color: #4e54c8;
+}
+
+/* ===== Main Content Container ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ===== Amenity List (Responsive Grid) ===== */
+.amenity-list {
+  display: grid;
+  /* Creates responsive columns:
+     - They fit as many as possible
+     - Each is at least 300px wide
+     - They share remaining space equally */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===== Amenity Card Styling ===== */
+.amenity-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  /* Flex magic to align buttons */
+  display: flex;
+  flex-direction: column;
+}
+
+.amenity-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4e54c8;
+  margin-bottom: 0.5rem;
+}
+
+.cost-detail {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  /* This pushes the link to the bottom */
+  flex-grow: 1; 
+}
+
+.cost-detail strong {
+  font-weight: 600;
+  color: #333;
+}
+
+/* ===== Button-styled Link ===== */
+.primary-action-link {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4e54c8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+}
+
+.primary-action-link:hover {
+  background-color: #3b42b0;
+}
+
+/* ===== No Data Message ===== */
+.no-data-message {
+  text-align: center;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 3rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-header h1 {
+    font-size: 1.6rem;
+  }
+  .amenity-card {
+    padding: 1.5rem;
+  }
+}

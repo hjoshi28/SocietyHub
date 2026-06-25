@@ -1,0 +1,146 @@
+/* ===== Google Font Import ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===== CSS Variables ===== */
+:root {
+    --primary-color: #4e54c8;
+    --gradient-start: #8f94fb;
+    --gradient-bg: linear-gradient(135deg, rgb(28, 28, 52), #8f94fb);
+    
+    --danger-color: #ff4d4d;
+    --danger-color-hover: #e03e3e;
+
+    --white: #ffffff;
+    --text-light: #e6e6e6;
+    --text-accent: #4e54c8;
+    
+    --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    --border-radius-main: 14px;
+    --border-radius-sub: 8px;
+}
+
+/* ===== Base Reset (from your reference) ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ===== Body (from your reference) ===== */
+body {
+    min-height: 100vh;
+    background: var(--gradient-bg);
+    padding: 30px 15px;
+    color: var(--white);
+    line-height: 1.6;
+    /* Added flex properties from reference */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== Container (from your reference) ===== */
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ===== Typography (from your reference) ===== */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.dashboard-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+}
+
+/* ===== Dashboard Grid (From Reference CSS) ===== */
+.dashboard {
+    display: grid;
+    /* This centers the single item if there is only one */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.8rem;
+    justify-items: center;
+    margin-bottom: 3rem;
+    /* Ensures the grid doesn't stretch full width if only one item */
+    max-width: 240px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== Dashboard Cards (From Reference CSS) ===== */
+.dashboard a {
+    background: var(--white);
+    color: var(--text-accent);
+    text-decoration: none;
+    padding: 1.8rem 1rem;
+    border-radius: var(--border-radius-main);
+    width: 100%;
+    max-width: 240px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard a i {
+    font-size: 2rem;
+    margin-bottom: 0.7rem;
+    color: var(--text-accent);
+}
+
+/* Hover Effects */
+.dashboard a:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--gradient-start));
+    color: var(--white);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.dashboard a:hover i {
+    color: var(--white);
+}
+
+/* ===== Logout Button (From Reference CSS) ===== */
+.logout-btn {
+    display: inline-block;
+    background-color: var(--danger-color);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border-radius: var(--border-radius-sub);
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.4);
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: var(--danger-color-hover);
+    transform: translateY(-3px);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1rem;
+    }
+
+    .dashboard {
+        /* On small screens, let it be 1fr */
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+}

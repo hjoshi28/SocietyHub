@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/resident_profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>My Profile</title>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>My Profile</h1>
+        <a href="/resident/dashboard" class="header-link">Back to Dashboard</a>
+    </header>
+
+    <main class="container">
+
+        <div class="profile-layout">
+            
+            <div class="card">
+                <h3>Personal Information</h3>
+                <dl class="details-list">
+                    <div class="detail-item">
+                        <dt>Name</dt>
+                        <dd><%= user.name %></dd>
+                    </div>
+                    <div class="detail-item">
+                        <dt>Email</dt>
+                        <dd><%= user.email %></dd>
+                    </div>
+                    <div class="detail-item">
+                        <dt>Phone</dt>
+                        <dd><%= user.phone %></dd>
+                    </div>
+                </dl>
+                <a href="/resident/profile/edit" class="btn btn-primary">Edit Profile & Password</a>
+            </div>
+
+            <div class="card">
+                <h3>Property Details</h3>
+                <% if (flat) { %>
+                    <dl class="details-list">
+                        <div class="detail-item">
+                            <dt>Flat</dt>
+                            <dd><%= flat.wing %>-<%= flat.flat_number %></dd>
+                        </div>
+                        <div class="detail-item">
+                            <dt>Relationship</dt>
+                            <dd><%= flat.relationship %></dd>
+                        </div>
+                    </dl>
+                <% } else { %>
+                    <p class="empty-message">You are not yet assigned to a flat.</p>
+                <% } %>
+                
+                <h3 class="sub-section-title">Parking & Vehicles</h3>
+            
+                <% if (parking) { %>
+                    <p><strong>Assigned Spot:</strong> <%= parking.slot_number %> (<%= parking.is_covered ? 'Covered' : 'Open' %>)</p>
+                <% } else { %>
+                    <p>You have no assigned parking spot.</p>
+                <% } %>
+                
+                <hr>
+
+                <strong>Your Registered Vehicles:</strong>
+                <% if (vehicles.length > 0) { %>
+                    <ul class="vehicle-list">
+                        <% vehicles.forEach(v => { %>
+                            <li class="vehicle-item">
+                                <span><%= v.vehicle_number %> (<%= v.vehicle_type %>)</span>
+                                <form action="/resident/profile/vehicles/<%= v.vehicle_id %>/remove" method="POST">
+                                    <button type="submit" class="btn btn-danger btn-small">Remove</button>
+                                </form>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p class="empty-message">You have no registered vehicles.</p>
+                <% } %>
+
+                <hr>
+                
+                <h4>Add a New Vehicle</h4>
+                <form action="/resident/profile/vehicles/add" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vehicle_number">Vehicle Number:</label>
+                            <input type="text" id="vehicle_number" name="vehicle_number" required placeholder="MH-01-AB-1234">
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle_type">Type:</label>
+                            <select name="vehicle_type" id="vehicle_type" required>
+                                <option value="Car">Car</option>
+                                <option value="Bike">Bike</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Vehicle</button>
+                </form>
+            </div>
+
+        </div> </main>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assign Flat</title>
+</head>
+<body>
+  <h1>Assign Flat to Resident</h1>
+  <a href="/admin/users">Back to User List</a>
+  <hr>
+
+  <h2>Assigning: <%= resident.full_name %></h2>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
+
+  <form action="/admin/users/<%= resident.user_id %>/assign-flat" method="POST">
+    <div>
+      <label for="flat_id">Select Available Flat:</label><br>
+      <select name="flat_id" id="flat_id" required>
+        <option value="">-- Select Flat --</option>
+        <% availableFlats.forEach(f => { %>
+          <option value="<%= f.flat_id %>"><%= f.wing %>-<%= f.flat_number %></option>
+        <% }) %>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="relationship">Relationship:</label><br>
+      <select name="relationship" id="relationship" required>
+        <option value="Owner">Owner</option>
+        <option value="Tenant">Tenant</option>
+      </select>
+    </div>
+    <br>
+    <button type="submit">Assign Flat</button>
+  </form>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Flat</title>
+    <link rel="stylesheet" href="/css/admin_assign_flat.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <h1>Assign Flat to Resident</h1>
+        <a href="/admin/users" class="back-link">&larr; Back to User List</a>
+
+        <div class="content-wrapper">
+
+            <h2 class="assignment-subtitle">
+                Assigning to: <strong><%= resident.full_name %></strong>
+            </h2>
+
+            <% if (typeof error !== 'undefined' && error) { %>
+                <p class="error-message"><%= error %></p>
+            <% } %>
+
+            <form action="/admin/users/<%= resident.user_id %>/assign-flat" method="POST">
+                
+                <div class="form-group">
+                    <label for="flat_id">Select Available Flat:</label>
+                    <select name="flat_id" id="flat_id" required>
+                        <option value="">-- Select Flat --</option>
+                        <% availableFlats.forEach(f => { %>
+                            <option value="<%= f.flat_id %>">
+                                <%= f.wing %>-<%= f.flat_number %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="relationship">Relationship:</label>
+                    <select name="relationship" id="relationship" required>
+                        <option value="Owner">Owner</option>
+                        <option value="Tenant">Tenant</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Assign Flat</button>
+            </form>
+
+        </div> </div> </body>
+</html>

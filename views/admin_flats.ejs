@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Flats - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin_flats.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Flat Management</h1>
+        <a href="/admin/dashboard" class="back-link">&larr; Back to Dashboard</a>
+
+        <div class="content-wrapper">
+
+            <% if (typeof error !== 'undefined' && error) { %>
+                <div class="error-message">
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <div class="form-container">
+                <h2 class="assignment-subtitle">➕ Add a New Flat</h2>
+                <form action="/admin/flats/new" method="POST">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wing">Wing:</label>
+                            <input type="text" id="wing" name="wing" required placeholder="e.g., A">
+                        </div>
+                        <div class="form-group">
+                            <label for="flat_number">Flat Number:</label>
+                            <input type="number" id="flat_number" name="flat_number" required placeholder="e.g., 101">
+                        </div>
+                        <div class="form-group">
+                            <label for="sq_footage">Sq. Footage (Optional):</label>
+                            <input type="number" id="sq_footage" name="sq_footage" placeholder="e.g., 1200">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Flat</button>
+                </form>
+            </div> <h2 class="section-title">All Flats</h2>
+            
+            <div class="table-responsive-wrapper">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Flat</th>
+                            <th>Sq. Footage</th>
+                            <th>Status</th>
+                            <th>Resident / Relationship</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% flats.forEach(flat => { %>
+                        <tr>
+                            <td><%= flat.wing %>-<%= flat.flat_number %></td>
+                            <td><%= flat.sq_footage || 'N/A' %></td>
+                            
+                            <td class="status-<%= flat.relationship ? 'Occupied' : 'Vacant' %>">
+                                <% if (flat.relationship) { %>
+                                    Occupied
+                                <% } else { %>
+                                    Vacant
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <% if (flat.resident_name) { %>
+                                    <%= flat.resident_name %> (<%= flat.relationship %>)
+                                <% } else { %>
+                                    N/A
+                                <% } %>
+                            </td>
+
+                            <td class="action-cell">
+                                <% if (flat.relationship) { %>
+                                    <form action="/admin/flats/<%= flat.flat_id %>/unassign" method="POST">
+                                        <button type="submit" class="btn btn-danger btn-small">Un-assign</button>
+                                    </form>
+                                <% } else { %>
+                                    <span class="status-text-awaiting">-</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div> </div> </div> </body>
+</html>

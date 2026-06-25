@@ -1,0 +1,62 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Staff Dashboard</title>
+</head>
+<body>
+  <h1>Welcome, <%= user.name %> (Staff)</h1>
+  <p>This is your dashboard. Your specialty is: <strong><%= user.specialty %></strong></p>
+  <a href="/logout">Logout</a>
+  <hr>
+
+  <h2>Your Quick Links</h2>
+  
+  <% if (user.specialty === 'Security') { %>
+    <p>
+      <a href="/staff/visitors">Manage Visitors</a>
+    </p>
+  <% } else { %>
+    <p>
+      <a href="/staff/complaints">View My Assigned Complaints</a>
+    </p>
+  <% } %>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href="/css/staff_dashboard.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome, <%= user.name %> (Staff)</h1>
+        <p class="dashboard-subtitle">
+            This is your dashboard. Your specialty is: <strong><%= user.specialty %></strong>
+        </p>
+
+        <div class="dashboard">
+            <% if (user.specialty === 'Security') { %>
+                <a href="/staff/visitors">
+                    <i class="fas fa-id-card"></i>
+                    Manage Visitors
+                </a>
+            <% } else { %>
+                <a href="/staff/complaints">
+                    <i class="fas fa-tools"></i>
+                    View My Assigned Complaints
+                </a>
+            <% } %>
+        </div>
+        
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div> </body>
+</html>

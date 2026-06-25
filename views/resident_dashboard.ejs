@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/resident_dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Resident Dashboard</title>
+</head>
+<body>
+
+  <header class="main-header">
+    <h1>Welcome, <%= user.name %></h1>
+    <a href="/logout" class="logout-button">Logout</a>
+  </header>
+
+  <main class="container">
+
+    <section class="card nav-card">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="/resident/profile">My Profile</a></li>
+        <li><a href="/resident/bills">My Bills</a></li>
+        <li><a href="/resident/complaints">My Complaints</a></li>
+        <li><a href="/resident/amenities">Book an Amenity</a></li>
+        <li><a href="/resident/my-bookings">My Bookings</a></li>
+        <li><a href="/resident/visitors">My Visitors</a></li>
+        <li><a href="/resident/announcements">Announcements</a></li>
+      </ul>
+    </section>
+
+    <section class="dashboard-grid">
+      
+      <div class="card">
+        <h3>My Bills</h3>
+        <p class="value <%= summary.bills.total_due > 0 ? 'value-danger' : 'value-success' %>">
+          ₹<%= parseInt(summary.bills.total_due).toFixed(2) %>
+        </p>
+        <p class="context"><%= summary.bills.unpaid_count %> unpaid bill(s).</p>
+        <a href="/resident/bills" class="card-link">View Bills</a>
+      </div>
+
+      <div class="card">
+        <h3>My Complaints</h3>
+        <% if (summary.complaint) { %>
+          <p class="value"><%= summary.complaint.status %></p>
+          <p class="context">Your last complaint: "<%= summary.complaint.title %>"</p>
+        <% } else { %>
+          <p class="value">All Clear</p>
+          <p class="context">You have no complaint history.</p>
+        <% } %>
+        <a href="/resident/complaints" class="card-link">View Complaints</a>
+      </div>
+
+      <div class="card">
+        <h3>My Bookings</h3>
+        <% if (summary.booking) { %>
+          <p class="value"><%= summary.booking.amenity_name %></p>
+          <p class="context">
+            Next booking: <%= new Date(summary.booking.start_time).toLocaleString() %>
+          </p>
+        <% } else { %>
+          <p class="value">No Bookings</p>
+          <p class="context">You have no upcoming bookings.</p>
+        <% } %>
+        <a href="/resident/my-bookings" class="card-link">View My Bookings</a>
+      </div>
+
+      <div class="card card-full-width">
+        <h3>Latest Announcement</h3>
+        <% if (summary.announcement) { %>
+          <h4><%= summary.announcement.title %></h4>
+          <p class="context"><%= summary.announcement.body.substring(0, 200) %>...</p>
+        <% } else { %>
+          <p>No new announcements.</p>
+        <% } %>
+        <a href="/resident/announcements" class="card-link">View All Announcements</a>
+      </div>
+
+    </section>
+  </main>
+
+</body>
+</html>

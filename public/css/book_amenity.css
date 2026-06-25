@@ -1,0 +1,242 @@
+/* Color Palette & Fonts */
+:root {
+  --primary-color: #4e54c8;
+  --primary-light: #8f94fb;
+  --text-dark: #333;
+  --text-light: #444;
+  --background-light: #ffffff;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --danger-color: #ff4d4d; 
+  --dark-bg: rgb(28,28,52);
+  --maintenance-color: #dc3545; /* Specific color for maintenance blocks */
+}
+
+/* Base Layout (Required Background) */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Required background gradient */
+  background: linear-gradient(135deg, var(--dark-bg), var(--primary-light)); 
+  color: #fff;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Outer container for content isolation */
+.content-wrapper {
+  width: 100%;
+  max-width: 800px; /* Mid-size wrapper for forms/tables */
+  padding: 2rem;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  /* Applying a slightly transparent card background for the overall content */
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Headings and Structure */
+h1 {
+  color: #fff;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+h2 {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+}
+
+.cost-info {
+    color: #fff;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 1.5rem 0;
+}
+
+/* Back Link Style */
+.header-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.link-back {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.link-back:hover {
+  color: #dce2ff;
+}
+
+/* ===== Error message & No Data ===== */
+.error-message {
+  color: var(--danger-color);
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  padding: 0.8rem;
+  border: 1px solid var(--danger-color);
+  border-radius: 8px;
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.no-data {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+
+/* ===== Booking Form (Form Card) ===== */
+.form-section-container {
+    background: var(--background-light);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+.form-section-container h2 {
+    color: var(--primary-color);
+    border-bottom: 1px solid #eee;
+}
+
+form div {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+input[type="date"],
+select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: white; 
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7em top 50%;
+  background-size: 0.65em auto;
+}
+
+input[type="date"]:focus,
+select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 6px rgba(78, 84, 200, 0.3);
+}
+
+/* ===== Button (Primary Style) ===== */
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 0.8rem;
+}
+
+button:hover {
+  background-color: #3b42b0;
+}
+
+
+/* ===== Bookings Table Styling (Data Table) ===== */
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--background-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem 1.2rem;
+  border-bottom: none;
+}
+
+td, th {
+  padding: 1rem 1.2rem;
+  border: 1px solid #eee;
+  color: var(--text-dark);
+  vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f0f3ff;
+}
+
+/* Maintenance Row Highlight */
+.maintenance-slot {
+  background-color: #ffeaea !important; /* Light red background for blocked slot */
+}
+.maintenance-text {
+  color: var(--maintenance-color);
+  font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .content-wrapper {
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  td, th {
+    padding: 0.7rem;
+  }
+}

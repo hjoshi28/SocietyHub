@@ -1,0 +1,108 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Parking</title>
+    
+    <link rel="stylesheet" href="/css/admin_parking.css">
+
+</head>
+<body>
+    <h1>Admin - Parking Management</h1>
+    <a href="/admin/dashboard">Back to Dashboard</a> | 
+    <a href="/admin/parking/assign" style="font-weight: bold; color: blue;">
+        Assign a New Spot
+    </a>
+    <hr>
+
+    <h2>Parking Slot Status</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Slot Number</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% parkingSlots.forEach(slot => { %>
+                <tr>
+                    <td><%= slot.slot_number %></td>
+                    <td class="status-<%= slot.status %>">
+                        <%= slot.status %>
+                    </td>
+                    <td><%= slot.resident_name || 'N/A' %></td>
+                    <td>
+                        <% if (slot.status === 'Assigned') { %>
+                            <form action="/admin/parking/unassign/<%= slot.slot_id %>" method="POST" style="display:inline;">
+                                <button type="submit">Un-assign</button>
+                            </form>
+                        <% } else { %>
+                            -
+                        <% } %>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Parking</title>
+    <link rel="stylesheet" href="/css/admin_parking.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin - Parking Management</h1>
+
+        <div class="page-actions">
+            <a href="/admin/dashboard" class="back-link">&larr; Back to Dashboard</a>
+            <a href="/admin/parking/assign" class="btn btn-primary">
+                <i class="fas fa-plus-circle"></i> Assign New Spot
+            </a>
+        </div>
+
+        <div class="content-wrapper">
+            <h2 class="section-title">Parking Slot Status</h2>
+            
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Slot Number</th>
+                        <th>Status</th>
+                        <th>Assigned To</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% parkingSlots.forEach(slot => { %>
+                        <tr>
+                            <td><%= slot.slot_number %></td>
+                            <td class="status-<%= slot.status %>">
+                                <%= slot.status %>
+                            </td>
+                            <td><%= slot.resident_name || 'N/A' %></td>
+                            <td class="action-cell">
+                                <% if (slot.status === 'Assigned') { %>
+                                    <form action="/admin/parking/unassign/<%= slot.slot_id %>" method="POST" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger btn-small">Un-assign</button>
+                                    </form>
+                                <% } else { %>
+                                    <span class="status-text-assigned">-</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+
+        </div> </div> <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+</html>

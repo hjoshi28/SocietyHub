@@ -1,0 +1,185 @@
+/* ===== Google Font Import ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===== Base Reset (from your reference) ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ===== Body (from your reference) ===== */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgb(28, 28, 52), #8f94fb);
+    padding: 30px 15px; /* Allow for scrolling and space */
+    color: #fff;
+}
+
+/* ===== Container (from your reference) ===== */
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto; /* Center the container */
+}
+
+/* ===== Typography (from your reference) ===== */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 600;
+    color: #4e54c8; /* Accent color from your reference */
+    margin-bottom: 1rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: #e6e6e6;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: #fff;
+    transform: translateX(-3px);
+}
+
+/* ===== NEW Content Wrapper (Styled like reference cards) ===== */
+.content-wrapper {
+    background: #fff;
+    color: #333; /* Text inside the card is dark */
+    text-align: left;
+    padding: 2.5rem;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Form Styling (Adapted to reference) ===== */
+.form-container {
+    background-color: #f9faff; /* Light purple-white */
+    border: 1px solid #e0e0ff;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #4e54c8;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #4e54c8;
+    box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+}
+
+/* ===== Button Styling (Adapted from reference) ===== */
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Primary Button (Styled like reference card hover) */
+.btn-primary {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(78, 84, 200, 0.4);
+}
+
+/* Danger Button (Styled like reference logout-btn) */
+.btn-danger {
+    background-color: #ff4d4d;
+    color: #fff;
+    padding: 0.6rem 1.2rem; /* Slightly smaller for table */
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+}
+
+.btn-danger:hover {
+    background-color: #e03e3e;
+    transform: translateY(-3px);
+}
+
+/* ===== Table Styling (Adapted to reference) ===== */
+.section-title {
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures radius is applied to corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.content-table th,
+.content-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.content-table th {
+    background-color: #4e54c8;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.content-table tbody tr:nth-child(even) {
+    background-color: #f9faff;
+}
+
+.content-table tbody tr:hover {
+    background-color: #f0f2ff;
+}
+
+.content-table .action-cell {
+    text-align: center;
+}
+
+.content-table .action-cell form {
+    margin: 0;
+}
